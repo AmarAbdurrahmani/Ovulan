@@ -1,0 +1,1245 @@
+/* ===== Global Styles & Resets ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: #fff;
+    overflow-x: hidden; /* Parandalon scroll-in anësor gjatë animacioneve */
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== Header & Navigation ===== */
+header {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1400px;
+    z-index: 100;
+    /* Ngjyra e zezë me 40% opacity */
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    padding: 10px 20px;
+}
+
+nav {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+nav ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+.contact-btn {
+    background-color: #fff;
+    color: #111;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: #ccc;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    position: relative;
+    overflow: hidden; /* E rëndësishme për animacionet që vijnë nga jashtë */
+    background-image: url('../img/background.jpg'); /* Zëvendëso me emrin e fotos tënde */
+    background-size: cover; /* Mbulon të gjithë hapësirën */
+    background-position: center; /* Qendron foton */
+    background-repeat: no-repeat; /* Mos e përsërit foton */
+    background-attachment: fixed; /* Krijon efektin parallax kur lëviz faqen */
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    max-width: 1400px;
+    position: relative; /* Siguron që të jetë mbi tekstin e sfondit */
+    z-index: 10;
+}
+
+/* ===== Animated Background Text ===== */
+.background-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none; /* Lejon klikimin përmes tekstit */
+}
+
+.bg-text {
+    position: absolute;
+    font-size: 18vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.text-1 {
+    top: 10%;
+    left: 25%;
+    opacity: 0; /* Fillon i fshehur */
+    animation: slideFromRight 1.5s 0.2s ease-out forwards;
+    opacity: 0.3; /* 30% Opacity */
+}
+
+.text-2 {
+    top: 35%;
+    left: 10%;
+    opacity: 0; /* Fillon i fshehur */
+    animation: slideFromRight 1.5s 0.4s ease-out forwards;
+    opacity: 0.2; /* 20% Opacity */
+}
+
+.text-3 {
+    top: 60%;
+    left: 40%;
+    opacity: 0; /* Fillon i fshehur */
+    animation: slideFromRight 1.5s 0.6s ease-out forwards;
+    opacity: 0.1; /* 10% Opacity */
+}
+
+/* ===== Animated Main Content ===== */
+
+/* Left Text Box */
+.text-content {
+    opacity: 0; /* Fillon i fshehur */
+    animation: slideFromLeft 1.2s 0.8s ease-out forwards;
+      /* === SHTO KODIN MË POSHTË === */
+    background: rgba(10, 10, 10, 0.3); /* Sfond i zi me 30% tejdukshmëri */
+    padding: 30px;                        /* Hapësirë e brendshme rreth tekstit */
+    border-radius: 12px;                  /* Kënde të rrumbullakosura */
+    backdrop-filter: blur(5px);           /* Krijon efekt "xhami" (opsionale, por duket bukur) */
+}
+
+.text-content h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.text-content > p {
+    font-size: 1rem;
+    color: #b0b0b0;
+    max-width: 450px;
+    margin-bottom: 30px;
+}
+
+.stats {
+    display: flex;
+    gap: 40px;
+}
+
+.stat h3 {
+    font-size: 2rem;
+}
+
+.stat p {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+}
+
+/* Right Image */
+.image-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Fillon e fshehur */
+    animation: slideFromBottom 1.2s 0.8s ease-out forwards;
+}
+
+.image-content img {
+    max-width: 100%;
+    width: 500px;
+    height: auto;
+    filter: drop-shadow(0px 20px 40px rgba(0, 0, 0, 0.5));
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+
+/* Animacioni për tekstin që vjen nga e djathta */
+@keyframes slideFromRight {
+    from {
+        transform: translateX(50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        /* KEMI HEQUR "opacity: 1;" NGA KËTU */
+    }
+}
+
+/* Animacioni për kutinë e tekstit që vjen nga e majta */
+@keyframes slideFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animacioni për imazhin që vjen nga poshtë-lart */
+@keyframes slideFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.top-collection-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.h1 {
+    font-size: 2em;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+    display: inline-block;
+    color: #111;
+}
+.product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* --- ANIMATION FIX STARTS HERE --- */
+
+.product-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: left;
+
+    /* 1. This is the initial "hidden" state of the card */
+    opacity: 0;
+    transform: translateY(30px); /* A slightly shorter distance looks smoother */
+
+    /* 2. This defines the smooth animation when properties change */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* 3. This is the final "visible" state that will be triggered */
+.product-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 4. Use transition-delay for the staggered effect */
+.product-card:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.product-card:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+/* --- ANIMATION FIX ENDS HERE --- */
+
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+}
+
+.product-info p {
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.promo-section {
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.promo-content {
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.promo-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    border-bottom: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.promo-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.order-button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.order-button:hover {
+    background-color: #ddd;
+}
+
+/* Base image styles */
+.left-image img,
+.right-image img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    opacity: 0; /* hidden until scrolled */
+    transition: opacity 0.6s ease-out;
+}
+
+/* Left image (starts off-screen to left) */
+.left-image img {
+    transform: translateX(-150px) rotate(-5deg);
+}
+
+/* Right image (starts off-screen to right) */
+.right-image img {
+    transform: translateX(150px) rotate(5deg);
+}
+
+/* Active state when scrolled into view */
+.left-image img.show {
+    animation: slideInLeft 1.2s ease-out forwards;
+}
+
+.right-image img.show {
+    animation: slideInRight 1.2s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+/* Keyframes */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-150px) rotate(-5deg);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) rotate(-5deg);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(150px) rotate(5deg);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) rotate(5deg);
+        opacity: 1;
+    }
+}
+/* ===== Section base (striped bg like screenshot) ===== */
+.testimonial-section {
+    /* center the content and create a 12-col grid */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1px;
+    align-items: start;
+
+  
+   
+}
+
+/* ===== LEFT: big photo ===== */
+.testimonial-section .watch-left {
+    grid-column: 1 / span 6;
+}
+.testimonial-section .watch-left img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    display: block;
+}
+
+/* ===== RIGHT: watch image + description to its right ===== */
+.testimonial-section .watch-right {
+    grid-column: 8 / span 5;
+    display: grid;
+    grid-template-columns: 220px 1fr; /* watch | text */
+    column-gap: 24px;
+    align-items: start;
+}
+.testimonial-section .watch-right > img {
+    width: 220px;
+    height: auto;
+    justify-self: center;
+    filter: drop-shadow(0 6px 14px rgba(0,0,0,0.25));
+}
+.testimonial-section .watch-right .watch-description {
+    align-self: start;
+    text-align: left;
+    color: #0f1321;
+}
+.testimonial-section .watch-right .watch-description h3 {
+    margin: 8px 0 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.testimonial-section .watch-right .watch-description p {
+    line-height: 1.6;
+    font-size: 14px;
+    color: #2a2e3b;
+}
+
+/* ===== CENTER OVERLAY: "The Icon of Ovulan" card ===== */
+.testimonial-section .watch-info {
+    /* place across the join of left image and right column, then pull up */
+    grid-column: 4 / span 6;
+    margin-top: -70px;               /* overlap the bottom of left image */
+    z-index: 2;
+
+    background: rgba(255,255,255,0.86);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    padding: 22px 24px;
+    text-align: left;
+    color: #0f1321;
+}
+.testimonial-section .watch-info h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.testimonial-section .watch-info p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2a2e3b;
+}
+
+/* ===== Heading (under hero block) ===== */
+.testimonial-section .testimonial-heading {
+   
+    text-align: center;
+    margin: 40px 0 10px;
+    font-size: 34px;
+    line-height: 1.2;
+    color: #0a1a2f;
+    font-weight: 800;
+}
+
+/* ===== Comments (only these animate on scroll) ===== */
+.testimonial-section .testimonial {
+    grid-column: 2 / span 5; /* default for (01), adjust below for (02) */
+    background: rgba(255,255,255,0.9);
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    padding: 20px 22px;
+    text-align: left;
+
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.testimonial-section .testimonial p {
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #1f2534;
+}
+.testimonial-section .testimonial span {
+    font-size: 13px;
+    color: #5a657c;
+}
+
+/* place (02) on the right side */
+.testimonial-section .comment-02 {
+    grid-column: 8 / span 4;
+}
+
+/* reveal state – added by your JS on scroll */
+.testimonial-section .testimonial.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Stats (matches screenshot spacing; static) ===== */
+.testimonial-section .stats {
+    grid-column: 8 / span 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+    margin-top: 20px;
+}
+.testimonial-section .stat-box {
+    text-align: left;
+}
+.testimonial-section .stat-box h3 {
+    margin: 0 0 2px;
+    font-size: 28px;
+    font-weight: 800;
+    color: #0a1a2f;
+}
+.testimonial-section .stat-box p {
+    margin: 0;
+    font-size: 13px;
+    color: #5a657c;
+}
+.testimonial-section .testimonial-heading {
+    grid-column: 2 / 12;     /* span across both comment columns */
+    grid-row: 5;             /* place it on the same row as comments */
+    text-align: center;
+
+    font-size: 34px;
+    line-height: 1.2;
+    color: #0a1a2f;
+    font-weight: 800;
+
+    align-self: center;      /* vertical center in the row */
+    margin: 0;               /* reset extra spacing */
+    transform: translateY(20px); /* fine-tune vertical position */
+}
+.testimonial-section .stats {
+    grid-column: 8 / span 4;
+    grid-row: 9;   /* force stats below heading */
+    margin-top: 20px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+/* Comments layout */
+.testimonial-section .testimonial {
+    grid-column: 2 / span 5; 
+    grid-row: 6;   /* both comments on same row */
+}
+.testimonial-section .comment-02 {
+    grid-column: 8 / span 4;
+    grid-row: 6;
+}
+
+/* Center heading in the same row as comments */
+.testimonial-section .testimonial-heading {
+    grid-column: 2 / 12;   /* span across both comments */
+    grid-row: 6;           /* exact same row as comments */
+    text-align: center;
+
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #0a1a2f;
+
+    align-self: center;    /* vertical center of row */
+    margin: 0;
+    z-index: 1;            /* make sure it’s on top */
+}
+.testimonial-section .comment-01 {
+    margin-top: 300px;   /* moves left comment lower */
+}
+
+.testimonial-section .comment-02 {
+    margin-top: -10px;  /* moves right comment higher */
+}
+
+/* Default hidden state */
+.testimonial-section .testimonial {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Left comment starts from the right */
+.testimonial-section .comment-01 {
+    transform: translateX(80px);  /* shifted to the right */
+}
+.testimonial-section .comment-01.show {
+    opacity: 1;
+    transform: translateX(0);     /* slide to normal position */
+}
+
+/* Right comment starts from the left */
+.testimonial-section .comment-02 {
+    transform: translateX(-80px); /* shifted to the left */
+}
+.testimonial-section .comment-02.show {
+    opacity: 1;
+    transform: translateX(0);     /* slide to normal position */
+}
+
+.stars {
+    z-index: 1000;
+    color: #0a1a2f;
+    display: block;
+    text-align: left;
+    margin-left: -900%;
+    font-size: 30px;
+}
+
+.header-gradient {
+            height: 10px;
+           /* background: linear-gradient(to right, #333, #000); /* Darker gradient */
+        }
+        .newsletter-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            /*background-color: #1a1a1a;*/
+            /*background: url('../img/background.jpg') no-repeat center center / cover;*/
+            flex-grow: 1;
+            overflow: hidden; /* To hide the image before animation */
+        }
+        .newsletter-content {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+           
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .text-container {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .text-container h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .text-container p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+        }
+        .subscribe-form input[type="email"] {
+            font-family: 'Poppins', sans-serif;
+            flex: 1;
+            padding: 15px 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            color: #fff;
+            font-size: 1em;
+            outline: none;
+        }
+        .subscribe-form input[type="email"]::placeholder {
+            color: #888;
+        }
+        .subscribe-form button {
+            font-family: 'Poppins', sans-serif;
+            padding: 15px 30px;
+            background-color: #0a1a2f; /* A nice blue for the button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .subscribe-form button:hover {
+            background-color: #1f2534;
+        }
+        .image-container {
+            flex: 1;
+            min-height: 400px; /* Ensure image container has a height */
+            background: url('../img/newsletter.webp') no-repeat center center / cover;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            transform: translateX(100%); /* Start off-screen to the right */
+            animation: slideIn 1s forwards; /* Animation for sliding in */
+            animation-delay: 0.3s; /* Delay the animation slightly */
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0); /* Slide to its original position */
+            }
+        }
+
+        .footer {
+            /*background: url('../img/background.jpg') no-repeat center center / cover;*/
+            /*background-color: #000;*/
+            padding: 60px 20px 20px;
+            color: #ccc;
+            font-size: 0.9em;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .footer-column h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-column ul li a:hover {
+            color: #fff;
+        }
+        .social-media {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-media a {
+            color: #fff;
+            font-size: 1.3em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-media a:hover {
+            color: #1f2534;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+        .contact-info a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .footer-bottom .design-credit {
+            color: #888;
+        }
+        .footer-bottom .design-credit a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-bottom .design-credit a:hover {
+            text-decoration: underline;
+        }
+        .background-wrapper {
+            background-image: url('../img/background.jpg'); /* Your image URL here! */
+            background-size: cover; /* Ensures the image covers the entire area */
+            background-position: center; /* Centers the image */
+            background-attachment: fixed; /* Creates the parallax scrolling effect */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .newsletter-content {
+                flex-direction: column;
+            }
+            .image-container {
+                border-radius: 0 0 10px 10px;
+                min-height: 300px;
+                animation: none; /* Disable animation for smaller screens if it causes layout issues */
+                transform: translateX(0);
+            }
+            .text-container {
+                padding: 40px;
+            }
+            .text-container h1 {
+                font-size: 2.5em;
+            }
+            .subscribe-form {
+                flex-direction: column;
+            }
+            .subscribe-form button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .text-container h1 {
+                font-size: 2em;
+            }
+            .newsletter-section {
+                padding: 40px 10px;
+            }
+            .text-container {
+                padding: 30px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-media {
+                justify-content: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .contact-section {
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 20px;
+        background: #fff;
+        }
+
+        .contact-container {
+        font-family: 'Poppins', sans-serif;
+        width: 100%;
+        max-width: 500px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-container h2 {
+            
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+        }
+
+        .contact-form .form-group {
+        margin-bottom: 15px;
+        }
+
+        .contact-form label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #444;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+        font-family: 'Poppins', sans-serif;
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        font-size: 14px;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+        border-color: #0a1a2f;
+        }
+
+        .contact-form button {
+        font-family: 'Poppins', sans-serif;
+        width: 100%;
+        padding: 14px;
+        background: #0a1a2f;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        }
+
+        .contact-form button:hover {
+        background:#1f2534;
+        }
+        .hamburger {
+        display: none;
+    }
+
+/* =================================== */
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+/* =================================== */
+
+/* --- TABLET & MOBILE STYLES --- */
+@media (max-width: 1024px) {
+    /* Header */
+    header {
+        width: 95%;
+        padding: 10px 15px;
+    }
+
+    /* Show the hamburger icon */
+    .hamburger {
+        display: block;
+        z-index: 1000;
+    }
+
+    /* Hide the original navigation links and button */
+    nav .nav-links,
+    nav .contact-btn {
+        display: none;
+    }
+
+    /* --- STYLES FOR THE OPEN MOBILE MENU --- */
+    /* This defines the full-screen overlay when '.active' is added by JS */
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        z-index: 1000;
+        padding-bottom: 80px;
+    }
+
+    .contact-btn.active {
+        display: block;
+        position: left;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%); /* Center the button */
+        z-index: 1001;
+        width: 80%;
+        text-align: center;
+        padding: 15px;
+        /* Add your active button styles here */
+    }
+
+.nav-links.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* CHANGED: Start from the top */
+    align-items: flex-start;   /* CHANGED: Align items to the left */
+    gap: 35px;                 /* UPDATED: Consistent gap */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    padding: 120px 50px; /* CHANGED: Added padding for spacing */
+}
+
+/* We remove the old .contact-btn.active rule and instead style it like a nav link */
+.nav-links.active + .contact-btn.active {
+    display: block; /* Make it visible */
+    position: left; /* Let it sit inside the menu flow */
+    /* It will now automatically get the same font/color as your other links */
+    /* It also inherits the flex gap from the container above */
+}
+    
+    /* Hero */
+    .hero-content {
+        grid-template-columns: 1fr; /* Stack text and image */
+        text-align: center;
+        gap: 30px;
+    }
+
+    .text-content {
+        order: 2; /* Move text below image */
+        padding: 20px;
+    }
+
+    .text-content h1 {
+        font-size: 3rem;
+    }
+
+    .image-content {
+        order: 1; /* Move image above text */
+    }
+
+    .image-content img {
+        width: 400px;
+    }
+
+    .stats {
+        justify-content: center;
+    }
+
+    /* Promo Section */
+    .promo-section {
+        flex-direction: column;
+        padding: 60px 20px;
+    }
+
+    .left-image, .right-image {
+        display: none; /* Hide side images on tablets to simplify */
+    }
+
+    /* Testimonial Section */
+    .testimonial-section {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 20px;
+        padding: 40px 20px;
+    }
+
+    .testimonial-section > * {
+        grid-column: 1 / -1 !important;
+        grid-row: auto !important;
+        margin: 0;
+        transform: none !important;
+    }
+
+    .testimonial-section .watch-left img {
+        height: auto;
+    }
+
+    .testimonial-section .watch-right {
+        grid-template-columns: 1fr; /* Stack watch and description */
+        gap: 20px;
+        justify-items: center;
+    }
+
+    .testimonial-section .watch-info {
+        margin-top: 20px;
+    }
+
+    .stars {
+        display: none; /* Hide decorative stars */
+    }
+
+    .testimonial-section .testimonial-heading {
+        margin-top: 40px;
+    }
+
+    .testimonial-section .stats {
+        margin-top: 20px;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Newsletter & Footer */
+    .newsletter-content {
+        flex-direction: column-reverse; /* Put form below image */
+    }
+
+    .image-container {
+        min-height: 250px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+    }
+}
+
+
+/* --- SMALL MOBILE-ONLY STYLES --- */
+@media (max-width: 768px) {
+    .hamburger i {
+       /* color: white; /* Example: Hamburger icon is white on mobile overlay */
+    }
+
+    /* Hero */
+    .hero {
+        height: auto;
+        padding: 120px 5% 60px 5%;
+    }
+
+    .text-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .image-content img {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .bg-text {
+        font-size: 34vw; /* Adjust background text size */
+    }
+
+    /* Top Collection */
+    .product-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    /* Promo Section */
+    .promo-content h1 {
+        font-size: 2.2em;
+    }
+
+    .promo-content {
+        padding: 30px;
+    }
+
+    /* Testimonial Section */
+    .testimonial-section .testimonial-heading {
+        font-size: 28px;
+    }
+
+    .testimonial-section .stat-box h3 {
+        font-size: 24px;
+    }
+
+    .testimonial, .watch-info, .watch-right .watch-description {
+        text-align: center;
+    }
+
+    /* Contact Form */
+    .contact-container {
+        padding: 20px;
+    }
+
+    /* Newsletter */
+    .text-container {
+        padding: 40px 20px;
+    }
+
+    .text-container h1 {
+        font-size: 2.2em;
+    }
+
+    .subscribe-form {
+        flex-direction: column;
+    }
+
+    /* Footer */
+    .footer-grid {
+        text-align: center;
+    }
+
+    .social-media {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
